@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include <cstdlib>
 #include <string>
+#include <iostream>
 
 using namespace std;
 
@@ -48,13 +49,12 @@ int setDate(struct Date &date, int day, int month, int year)
 
 void getInput(int &day, int &month, int &year)
 {
-	printf("Enter day: ");
-	scanf("%i", &day);
-	printf("Enter month: ");
-	scanf("%i", &month);
-	printf("Enter year: ");
-	scanf("%i", &year);
-	getchar();
+	cout << "Enter day: ";
+	cin >> day;
+	cout << "Enter month: ";
+	cin >> month;
+	cout << "Enter year: ";
+	cin >> year;
 }
 
 int main()
@@ -62,10 +62,35 @@ int main()
 	struct Date date;
 	int day, month, year = {}, error = 0;
 	bool manualInput = true;
+	if (manualInput)
+		cout << "Manual input enabled.\n";
+	else
+		cout << "Manual input disabled.\n";
 	do
 	{
 		if (manualInput)
-			getInput(day, month, year);
+		{
+			int choose;
+			cout << "\nChoose date input type:\n 1. Manual input\n 2. System date\n 3. Default";
+			cin >> choose;
+			if (choose != 1 && choose != 2 && choose != 3)
+			{
+				error = 1;
+				cout << "Error.\n";
+				break;
+			}
+			switch (choose) {
+			case 1:
+			{
+				getInput(day, month, year);
+				break;
+			}
+				/*
+				 * case 2:
+				 * case 3:
+				 */
+			}
+		}
 		else
 		{
 			day = 31;
@@ -74,13 +99,14 @@ int main()
 		}
 		if (setDate(date, day, month, year) == 0)
 		{
-			printf("Input date incorrect.\n\n");
+			cout << "Input date incorrect.\n\n";
 			error = 1;
 		}
 		else
 		{
-			printf("Input date correct.\n");
-			printf("Current date: %0.2d.%0.2d.%0.4d\n", date.day, date.month, date.year);
+			cout << "Input date correct.\n";
+			//printf("Current date: %0.2d.%0.2d.%0.4d\n", date.day, date.month, date.year);
+			cout << "Current date: " << date.day << "." << date.month << "." << date.year << "\n";
 			error = 0;
 		}
 	} while (error == 1 && manualInput);
