@@ -13,6 +13,11 @@ struct Date{
 int setDate(struct Date &date, int day, int month, int year)
 {
 	int maxDays[12] = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
+	bool visokosniy = false;
+	if (year % 4 == 0 && (year / 100) % 4 == 0) visokosniy = true;
+	else visokosniy = false;
+	if (visokosniy) maxDays[1] = 29;
+	else maxDays[1] = 28;
 	if (year < 0 || month < 1 || month > 12 || day < 1 || day > maxDays[month-1]) return 0;
 	else
 	{
@@ -45,23 +50,30 @@ void getInput(int &day, int &month, int &year)
 int main()
 {
 	struct Date date;
-	int day, month, year = {};
+	int day, month, year = {}, error = 0;
 	bool manualInput = true;
-	if (manualInput)
-		getInput(day, month, year);
-	else
+	do
 	{
-		day = 31;
-		month = 9;
-		year = 2017;
-	}
-	if (setDate(date, day, month, year) == 0)
-		printf("Input date incorrect.\n");
-	else
-	{
-		printf("Input date correct.\n");
-		printf("Current date: %0.2d.%0.2d.%0.4d\n", date.day, date.month, date.year);
-	}
+		if (manualInput)
+			getInput(day, month, year);
+		else
+		{
+			day = 31;
+			month = 9;
+			year = 2017;
+		}
+		if (setDate(date, day, month, year) == 0)
+		{
+			printf("Input date incorrect.\n\n");
+			error = 1;
+		}
+		else
+		{
+			printf("Input date correct.\n");
+			printf("Current date: %0.2d.%0.2d.%0.4d\n", date.day, date.month, date.year);
+			error = 0;
+		}
+	} while (error == 1 && manualInput);
 	system("pause");
 	return 0;
 }
