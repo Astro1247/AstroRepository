@@ -10,14 +10,17 @@ struct Date{
 	int year;
 };
 
+bool isLeap(int year)
+{
+	if (year % 4 == 0 && (year / 100) % 4 == 0) return true;
+	else return false;
+}
+
 int setDate(struct Date &date, int day, int month, int year)
 {
 	int maxDays[12] = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
-	bool visokosniy = false;
-	if (year % 4 == 0 && (year / 100) % 4 == 0) visokosniy = true;
-	else visokosniy = false;
-	if (visokosniy) maxDays[1] = 29;
-	else maxDays[1] = 28;
+	if (month == 2)
+		if (isLeap(year)) maxDays[1] = 29; else maxDays[1] = 28;
 	if (year < 0 || month < 1 || month > 12 || day < 1 || day > maxDays[month-1]) return 0;
 	else
 	{
