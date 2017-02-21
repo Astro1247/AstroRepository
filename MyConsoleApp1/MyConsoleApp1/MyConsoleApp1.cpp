@@ -2,6 +2,8 @@
 #include <cstdlib>
 #include <string>
 #include <iostream>
+#include <ctime>
+#include <iomanip>
 
 using namespace std;
 
@@ -71,7 +73,7 @@ int main()
 		if (manualInput)
 		{
 			int choose;
-			cout << "\nChoose date input type:\n 1. Manual input\n 2. System date\n 3. Default";
+			cout << "\nChoose date input type:\n 1. Manual input\n 2. System date\n 3. Default\nYour choise: ";
 			cin >> choose;
 			if (choose != 1 && choose != 2 && choose != 3)
 			{
@@ -83,12 +85,30 @@ int main()
 			case 1:
 			{
 				getInput(day, month, year);
+				error = 0;
 				break;
 			}
-				/*
-				 * case 2:
-				 * case 3:
-				 */
+			case 2:
+			{
+				time_t     rawtime;
+				struct tm* timeinfo;
+
+				time(&rawtime);
+				timeinfo = localtime(&rawtime);
+				day = timeinfo->tm_mday;
+				month = timeinfo->tm_mon + 1;
+				year = timeinfo->tm_year + 1900;
+				error = 0;
+				break;
+			}
+			case 3:
+			{
+				error = 0;
+				day = 1;
+				month = 1;
+				year = 2000;
+				break;
+			}
 			}
 		}
 		else
@@ -97,6 +117,7 @@ int main()
 			month = 9;
 			year = 2017;
 		}
+		if (error == 0)
 		if (setDate(date, day, month, year) == 0)
 		{
 			cout << "Input date incorrect.\n\n";
@@ -105,8 +126,7 @@ int main()
 		else
 		{
 			cout << "Input date correct.\n";
-			//printf("Current date: %0.2d.%0.2d.%0.4d\n", date.day, date.month, date.year);
-			cout << "Current date: " << date.day << "." << date.month << "." << date.year << "\n";
+			cout << "Current date: " << date.day << "." << setfill('0') << setw(2) << date.month << "." << date.year << "\n";
 			error = 0;
 		}
 	} while (error == 1 && manualInput);
