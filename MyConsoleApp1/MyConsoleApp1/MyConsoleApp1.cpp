@@ -25,7 +25,6 @@ void getInput(int &a, int &b)
 	cin >> a;
 	cout << "Enter b: ";
 	cin >> b;
-	getchar();
 }
 
 int setComplexNumber(struct cNum &complexNum, int a, int b)
