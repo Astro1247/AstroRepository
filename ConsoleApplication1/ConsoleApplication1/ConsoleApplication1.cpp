@@ -5,20 +5,33 @@
 #include "stdlib.h"
 #include "date.h"
 #include "complex.h"
+#include <ctime>
+#include <Windows.h>
 
 
 int main()
 {
-	int func = 2;
+	int func = 1;
 	switch (func)
 	{
 	case 1: //date_struct
 	{
-		int day, month, year;
-		date d;
-		d.getInput(day, month, year);
-		d.setDate(day, month, year);
-		d.print();
+		do
+		{
+			system("cls");
+			//time_t t = time(NULL);
+			//struct tm tm = *localtime(&t);
+			int day, month, year;
+			date d1(15,2,2015);
+			date dDefault;
+			//d1.getInput(day, month, year);
+			//d1.setDate(day, month, year);
+			printf("Set date:     ");
+			d1.print();
+			printf("Default date: ");
+			dDefault.print();
+			system("pause");
+		} while (true);
 		break;
 	}
 	case 2: //complex number
@@ -29,6 +42,7 @@ int main()
 		complex complex1;
 		complex complex2;
 		complex sumcomplex;
+		system("pause");
 		do
 		{
 			system("cls");
