@@ -18,3 +18,10 @@ int complex::setComplexNumber(int a, int b)
 	return 1;
 }
 
+void complex::operator+(complex *comp)
+{
+	this->a = a + comp->a;
+	this->b = b + comp->b;
+}
+
+

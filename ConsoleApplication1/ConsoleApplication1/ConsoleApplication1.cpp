@@ -11,7 +11,7 @@
 
 int main()
 {
-	int func = 1;
+	int func = 2;
 	switch (func)
 	{
 	case 1: //date_struct
@@ -47,7 +47,7 @@ int main()
 		{
 			system("cls");
 			error = 0;
-			printf("Menu:\n 1. Init structures\n 2. Change struct values\n 3. Print structures\n 4. Summ structues\n 5. EXIT\n\nYour choice: ");
+			printf("Menu:\n 1. Init structures\n 2. Change struct values\n 3. Print structures\n 4. Summ structues\n 5. Overload operator '+'\n 0. EXIT\n\nYour choice: ");
 			scanf("%i",&menuChoice);
 			switch (menuChoice)
 			{
@@ -143,6 +143,11 @@ int main()
 				break;
 			}
 			case 5:
+			{
+				complex1 + &complex2;
+				break;
+			}
+			case 0:
 				return 0;
 			default:
 			{
