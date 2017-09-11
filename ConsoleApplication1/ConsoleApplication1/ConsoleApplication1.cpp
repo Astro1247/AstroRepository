@@ -38,7 +38,7 @@ int main()
 	{
 		bool stucturesInitialized = false;
 		int error, menuChoice;
-		int a, b;
+		double a, b;
 		complex complex1;
 		complex complex2;
 		complex sumcomplex;
@@ -79,7 +79,7 @@ int main()
 					system("pause");
 					break;
 				}
-				int a, b;
+				double a, b;
 				int structNum, error;
 				do
 				{
@@ -123,8 +123,8 @@ int main()
 					system("pause");
 					break;
 				}
-				printf("First  struct: %i + %ii\n", complex1.a, complex1.b);
-				printf("Second  struct: %i + %ii\n", complex2.a, complex2.b);
+				printf("First  struct: %f + %fi\n", complex1.a, complex1.b);
+				printf("Second  struct: %f + %fi\n", complex2.a, complex2.b);
 				system("pause");
 				break;
 			}
@@ -138,13 +138,18 @@ int main()
 				}
 				sumcomplex.a = complex1.a + complex2.a;
 				sumcomplex.b = complex1.b + complex2.b;
-				printf("Summ num: %i + %ii\n", sumcomplex.a, sumcomplex.b);
+				printf("Summ num: %f + %fi\n", sumcomplex.a, sumcomplex.b);
 				system("pause");
 				break;
 			}
 			case 5:
 			{
 				complex1 + &complex2;
+				complex2 - &complex1;
+				sumcomplex + &complex1;
+				sumcomplex + &complex2;
+				complex1 - &sumcomplex;
+				complex2 - &sumcomplex;
 				break;
 			}
 			case 0:

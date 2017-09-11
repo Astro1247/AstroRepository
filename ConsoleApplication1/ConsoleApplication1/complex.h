@@ -2,10 +2,11 @@
 class complex
 {
 public:
-	int a;
-	int b;
-	void getInput(int &a, int &b);
-	int setComplexNumber(int a, int b);
+	double a;
+	double b;
+	void getInput(double &a, double &b);
+	double setComplexNumber(double a, double b);
 	void operator+(complex *comp);
+	void operator-(complex *comp);
 };
 

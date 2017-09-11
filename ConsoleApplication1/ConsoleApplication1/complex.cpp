@@ -1,16 +1,19 @@
 #include "stdafx.h"
 #include "complex.h"
+#include <iostream>
 
 
-void complex::getInput(int &a, int &b)
+void complex::getInput(double &a, double &b)
 {
 	printf("Enter a: ");
-	scanf("%i", &a);
+	//scanf("%d", &a);
+	std::cin >> a;
 	printf("Enter b: ");
-	scanf("%i", &b);
+	//scanf("%d", &b);
+	std::cin >> b;
 }
 
-int complex::setComplexNumber(int a, int b)
+double complex::setComplexNumber(double a, double b)
 {
 	if (a == NULL || b == NULL) return 0;
 	this->a = a;
@@ -24,4 +27,8 @@ void complex::operator+(complex *comp)
 	this->b = b + comp->b;
 }
 
-
+void complex::operator-(complex *comp)
+{
+	this->a = a - comp->a;
+	this->b = b - comp->b;
+}
