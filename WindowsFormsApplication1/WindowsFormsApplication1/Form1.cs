@@ -17,101 +17,53 @@ namespace WindowsFormsApplication1
             InitializeComponent();
         }
 
-        public int num1, num2, sum = 0;
-
-        private void clearResultBox(object sender, EventArgs e)
+        private void button1_Click(object sender, EventArgs e)
         {
-            resultbox.Text = "";
-        }
-
-        private bool toggleOperationButtons(bool status)
-        {
-            divide.Enabled = status;
-            multiple.Enabled = status;
-            plus.Enabled = status;
-            minus.Enabled = status;
-            result.Enabled = !status;
-            return status;
-        }
-
-        private void plus_Click(object sender, EventArgs e)
-        {
-            operation = 1;
-            num1 = Int32.Parse(resultbox.Text);
-            toggleOperationButtons(false);
-            clearResultBox(sender, e);
-        }
-
-        private void minus_Click(object sender, EventArgs e)
-        {
-            operation = 2;
-            num1 = Int32.Parse(resultbox.Text);
-            toggleOperationButtons(false);
-            clearResultBox(sender, e);
-        }
-
-        private void multiple_Click(object sender, EventArgs e)
-        {
-            operation = 3;
-            num1 = Int32.Parse(resultbox.Text);
-            toggleOperationButtons(false);
-            clearResultBox(sender, e);
-        }
-
-        private void divide_Click(object sender, EventArgs e)
-        {
-            operation = 4;
-            num1 = Int32.Parse(resultbox.Text);
-            toggleOperationButtons(false);
-            clearResultBox(sender, e);
-        }
-
-        private void result_Click(object sender, EventArgs e)
-        {
-            num2 = Int32.Parse(resultbox.Text);
-            clearResultBox(sender, e);
-            switch (operation)
+            int num1, num2, res;
+            num1 = Int32.Parse(num1_box.Text);
+            num2 = Int32.Parse(num2_box.Text);
+            int operation = 0;
+            /// <summary>
+            /// 1 - сумма
+            /// 2 - разница
+            /// 3 - умножение
+            /// 4 - деление
+            /// 0 - NULL
+            /// </summary>
+            switch (comboBox1.Text)
             {
-                case 1:
+                case "+":
                 {
-                    sum = num1 + num2;
-                    resultbox.Text = sum.ToString();
+                    operation = 1;
+                    res = num1 + num2;
                     break;
                 }
-                case 2:
+                case "-":
                 {
-                    sum = num1 - num2;
-                    resultbox.Text = sum.ToString();
+                    operation = 2;
+                    res = num1 - num2;
                     break;
                 }
-                case 3:
+                case "*":
                 {
-                    sum = num1 * num2;
-                    resultbox.Text = sum.ToString();
+                    operation = 3;
+                    res = num1*num2;
                     break;
                 }
-                case 4:
+                case "/":
                 {
-                    sum = num1 / num2;
-                    resultbox.Text = sum.ToString();
+                    operation = 4;
+                    res = num1/num2;
+                    break;
+                }
+                default:
+                {
+                    operation = 1;
+                    res = num1 + num2;
                     break;
                 }
             }
-            toggleOperationButtons(true);
-        }
-
-        public int operation = 0;
-        /// <summary>
-        /// 1 - сумма
-        /// 2 - разница
-        /// 3 - деление
-        /// 4 - умножение
-        /// </summary>
-
-        public void numberClicked(object sender, EventArgs e)
-        {
-            string num_str = ((System.Windows.Forms.Button)sender).Text;
-            resultbox.Text += num_str;
+            resultBtn.Text = res.ToString();
         }
     }
 }
